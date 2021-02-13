@@ -1,0 +1,18 @@
+.table-container{
+    background-color: gray;
+    width: 50%;
+    height: 50%;
+    margin-top: 200px !important;
+    border: 2px solid;
+    text-align: left;
+}
+
+.table-header{
+    background-color: black;
+    color: white;
+    height: 100px !important;
+}
+
+.table-row{
+    border: 2px solid green;
+}

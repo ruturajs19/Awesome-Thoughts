@@ -1,0 +1,13 @@
+.post-card{
+    margin-top: 200px;
+    background-color: gray;
+    color: white !important;
+    width: 800px;
+    text-align: left;
+    padding: 20px;
+}
+
+.post-card-title{
+
+    /* font-weight: bold; */
+}
