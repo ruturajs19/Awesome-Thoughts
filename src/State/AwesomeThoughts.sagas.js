@@ -1,10 +1,12 @@
 import { put, call, takeLatest, all } from "redux-saga/effects";
 import { reduxActions } from "./AwesomeThoughts.actions";
 
+const BASE_URL = "https://jsonplaceholder.typicode.com";
+
 function* getUsersSaga() {
   try {
     yield put({ type: reduxActions.ShowModal, modalText: "Loading..." });
-    const response = yield fetch("https://jsonplaceholder.typicode.com/users");
+    const response = yield fetch(`${BASE_URL}/users`);
     if (!response.ok) {
       throw new Error();
     }
@@ -21,7 +23,7 @@ function* getUsersSaga() {
 }
 
 function* getPostsByUserIdSaga(action) {
-  let url = new URL("https://jsonplaceholder.typicode.com/posts/"),
+  let url = new URL(`${BASE_URL}/posts/`),
     params = { userId: action.userId };
   Object.keys(params).forEach((key) =>
     url.searchParams.append(key, params[key])
@@ -46,9 +48,7 @@ function* getPostsByUserIdSaga(action) {
 function* getPostDetailsSaga(action) {
   try {
     yield put({ type: reduxActions.ShowModal, modalText: "Loading..." });
-    const response = yield fetch(
-      `https://jsonplaceholder.typicode.com/posts/${action.postId}`
-    );
+    const response = yield fetch(`${BASE_URL}/posts/${action.postId}`);
     if (!response.ok) {
       throw new Error();
     }
@@ -67,9 +67,7 @@ function* getPostDetailsSaga(action) {
 function* getCommentsByPostIdSaga(action) {
   try {
     yield put({ type: reduxActions.ShowModal, modalText: "Loading..." });
-    const response = yield fetch(
-      `https://jsonplaceholder.typicode.com/posts/${action.postId}/comments`
-    );
+    const response = yield fetch(`${BASE_URL}/posts/${action.postId}/comments`);
     if (!response.ok) {
       throw new Error();
     }
@@ -89,12 +87,9 @@ function* deletePostsSaga(action) {
   const { postId, history } = action;
   try {
     yield put({ type: reduxActions.ShowModal, modalText: "Loading..." });
-    const response = yield fetch(
-      `http://jsonplaceholder.typicode.com/posts/${postId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = yield fetch(`${BASE_URL}/posts/${postId}`, {
+      method: "DELETE",
+    });
     if (!response.ok) {
       throw new Error();
     }
