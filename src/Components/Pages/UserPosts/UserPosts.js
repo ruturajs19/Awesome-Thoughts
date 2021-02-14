@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import "./UserPosts.css";
+import { reduxActions } from "../../../State/AwesomeThoughts.actions";
 
 function UserPosts(props) {
   const { userPosts, getPostsByUserId } = props;
@@ -15,18 +16,19 @@ function UserPosts(props) {
   }, []);
   return (
     <div className="center">
-      {userPosts.length > 0 ? (
-        <div className="posts-list">
+      {userPosts.length > 0 && (
+        <ul className="list-group mb-4 posts-list">
+          <h2 className="post-list-heading">Posts:</h2>
           {userPosts.map((post) => (
             <div key={post.id}>
               <Link to={`/posts/${post.id}`}>
-                <p className={"post-title"}>{post.title}</p>
+                <li className="post-title">
+                  <b>{post.title}</b>
+                </li>
               </Link>
             </div>
           ))}
-        </div>
-      ) : (
-        <div>Loading...</div>
+        </ul>
       )}
     </div>
   );
@@ -40,7 +42,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPostsByUserId: (userId) =>
-      dispatch({ type: "GET_POSTS_BY_USERID", userId }),
+      dispatch({ type: reduxActions.GetPostsByUserId, userId }),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(UserPosts);

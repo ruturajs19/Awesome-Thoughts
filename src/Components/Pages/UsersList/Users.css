@@ -1,18 +1,19 @@
-.table-container{
-    background-color: gray;
-    width: 50%;
-    height: 50%;
-    margin-top: 200px !important;
-    border: 2px solid;
-    text-align: left;
+.table-container {
+  text-align: left;
+  width: 70%;
+  position: fixed;
+  left: 15%;
+  top: 10%
 }
 
-.table-header{
-    background-color: black;
-    color: white;
-    height: 100px !important;
+.table-header {
+  background-color: black;
+  color: white;
+  height: 100px !important;
+  padding: 10px;
 }
 
-.table-row{
-    border: 2px solid green;
+.table-row {
+  padding: 10px;
 }
+

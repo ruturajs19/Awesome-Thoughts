@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import  "./Users.css";
+import "./Users.css";
+import { reduxActions } from "../../../State/AwesomeThoughts.actions";
 
 function Users(props) {
   const { users, getUsers } = props;
@@ -13,12 +14,12 @@ function Users(props) {
     }
   }, []);
   return (
-    <div className="center">
+    <div className="table-container center">
       {users.length > 0 && (
-        <table className="table-container">
+        <table className="table table-dark table-striped">
           <thead className="table-header">
             <tr>
-              <td>
+              <td className="table-data">
                 <b>Name</b>
               </td>
               <td>
@@ -35,7 +36,9 @@ function Users(props) {
                 <td>{userData.name}</td>
                 <td>{userData.company.name}</td>
                 <td>
-                  <Link to={`/${userData.id}/posts`}>Posts</Link>
+                  <Link to={`/${userData.id}/posts`}>
+                    <b>View Posts</b>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -52,7 +55,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUsers: () => dispatch({ type: "GET_USERS" }),
+    getUsers: () => dispatch({ type: reduxActions.GetUsers }),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
