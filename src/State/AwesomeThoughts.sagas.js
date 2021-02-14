@@ -94,10 +94,11 @@ function* deletePostsSaga(action) {
       throw new Error();
     }
     yield call(() => history.goBack());
-    yield put({ type: reduxActions.CloseModal, modalText: "" });
-    console.log("DELETED Successfully");
+    yield put({
+      type: reduxActions.ShowModal,
+      modalText: "Successfully Deleted!",
+    });
   } catch (error) {
-    console.log("ERROR");
     yield put({
       type: reduxActions.ShowModal,
       modalText: "Failed To Delete The Post.Try Again",
